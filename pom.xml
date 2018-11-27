@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.xincao9</groupId>
+    <artifactId>x-benchmark</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <description>中间件测试组建</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <modules>
+        <module>x-benchmark-core</module>
+        <module>x-benchmark-url</module>
+        <module>x-benchmark-jms</module>
+        <module>x-benchmark-rabbitmq</module>
+        <module>x-benchmark-redis</module>
+        <module>x-benchmark-memcached</module>
+    </modules>
+</project>

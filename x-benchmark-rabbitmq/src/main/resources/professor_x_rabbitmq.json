@@ -1,0 +1,33 @@
+{
+    "professor": {
+        "host": "localhost",
+        "port": "8080",
+        "account": "admin",
+        "passwd": "admin",
+        "topic": "rabbitmq",
+        "title": "rabbitmq各项指标随着并发的变化"
+    },
+    "rabbitmq": {
+        "host": "localhost",
+        "port" : 5672,
+        "username": "admin",
+        "password": "admin",
+        "virtualHost" : "v1"
+        
+    },
+    "flow": [
+        {
+            "destination": "app-1",
+            "data": {
+                "message": "%0"
+            }
+        }
+    ],
+    "source": {
+        "type": "FILE",
+        "filename": "classes/message.txt",
+        "div": ",",
+        "indexs": [0],
+        "size": 10
+    }
+}
