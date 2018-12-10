@@ -33,7 +33,6 @@ public class XBenchmarkRedis {
         genericObjectPoolConfig.setMaxTotal(128);
         jedisPool = new JedisPool(genericObjectPoolConfig, "172.31.128.236", 6379);
         XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
-        jedisPool.close();
     }
 
     public static JedisPool getJedisPool() {
