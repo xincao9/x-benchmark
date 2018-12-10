@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author 510655387@qq.com
  */
-public class ProfessorXCore {
+public class XBenchmarkCore {
 
     private static final MethodService methodService = MethodService.getInstance();
 
@@ -134,9 +134,9 @@ public class ProfessorXCore {
 
     public static void help() {
         Logger.info("1.cmd -[c, t, m] value");
-        Logger.info("2.com.github.professor_x_core.interfaces.Source 接口必须实现, 实现为读取数据源");
-        Logger.info("3.com.github.professor_x_core.interfaces.Method 接口必须实现且需要使用@Test 标识, 实现为需要测试的代码块");
-        Logger.info("4.com.github.professor_x_core.interfaces.Result 接口不必须实现, 通过它可以将测试结果输出到自己的系统中");
+        Logger.info("2.com.github.xincao9.benchmark.core.interfaces.Source 接口必须实现, 实现为读取数据源");
+        Logger.info("3.com.github.xincao9.benchmark.core.interfaces.Method 接口必须实现且需要使用@Test 标识, 实现为需要测试的代码块");
+        Logger.info("4.com.github.xincao9.benchmark.core.interfaces.Result 接口不必须实现, 通过它可以将测试结果输出到自己的系统中");
         Logger.info("5.-c 并发数限制 0 < concurrent <= 1024 默认 1");
         Logger.info("6.-t 请求延时限制 cd > 0 默认 50ms; 建议阻塞调用设置小点, 计算密集调用设置大点, 小于0 为永不延时");
         Logger.info("7.-m 测试的方法类");
