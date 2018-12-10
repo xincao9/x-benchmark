@@ -13,9 +13,6 @@
     </properties>
     <modules>
         <module>x-benchmark-core</module>
-        <module>x-benchmark-url</module>
-        <module>x-benchmark-jms</module>
-        <module>x-benchmark-rabbitmq</module>
         <module>x-benchmark-redis</module>
         <module>x-benchmark-memcached</module>
     </modules>
