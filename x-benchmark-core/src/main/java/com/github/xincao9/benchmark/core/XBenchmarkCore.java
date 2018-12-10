@@ -1,3 +1,18 @@
+/*
+ * Copyright 2018 xingyunzhi.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.github.xincao9.benchmark.core;
 
 import com.github.xincao9.benchmark.core.annotation.Test;
@@ -10,22 +25,16 @@ import com.github.xincao9.benchmark.core.service.TaskPoolService;
 import com.github.xincao9.benchmark.core.threads.Checker;
 import com.github.xincao9.benchmark.core.threads.Worker;
 import com.github.xincao9.benchmark.core.util.Logger;
-import com.github.xincao9.benchmark.core.web.APIClient;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  *
- * @author 510655387@qq.com
+ * @author xincao9@gmail.com
  */
 public class XBenchmarkCore {
 
-    private static final MethodService methodService = MethodService.getInstance();
-
-    public static void bootstrap(Source source, String host, int port, String username, String passwd, String topic, String title, String... args) {
-        APIClient apic = new APIClient(host, port, username, passwd, topic, title);
-        bootstrap(source, apic, args);
-    }
+    private static final MethodService METHOD_SERVICE = MethodService.getInstance();
 
     public static void bootstrap(Source source, String... args) {
         bootstrap(source, null, args);
@@ -70,7 +79,7 @@ public class XBenchmarkCore {
             help();
             return;
         }
-        Method method = methodService.getMethod(m);
+        Method method = METHOD_SERVICE.getMethod(m);
         if (method == null) {
             help();
             return;
@@ -121,7 +130,7 @@ public class XBenchmarkCore {
 
     public static class D {
 
-        private int id;
+        private final int id;
 
         public D(int id) {
             this.id = id;
@@ -140,6 +149,6 @@ public class XBenchmarkCore {
         Logger.info("5.-c 并发数限制 0 < concurrent <= 1024 默认 1");
         Logger.info("6.-t 请求延时限制 cd > 0 默认 50ms; 建议阻塞调用设置小点, 计算密集调用设置大点, 小于0 为永不延时");
         Logger.info("7.-m 测试的方法类");
-        Logger.info("可以测试的方法有 : " + methodService.getMethodNames().toString());
+        Logger.info("可以测试的方法有 : " + METHOD_SERVICE.getMethodNames().toString());
     }
 }
