@@ -17,7 +17,7 @@ package com.github.xincao9.redis;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 /**
  *
@@ -25,8 +25,15 @@ import redis.clients.jedis.Jedis;
  */
 public class XBenchmarkRedis {
 
+    private static JedisPool jedisPool;
+
     public static void main(String... args) {
-        Jedis jedis = new Jedis();
+        jedisPool = new JedisPool("localhost", 6379);
         XBenchmarkCore.bootstrap(new SequenceSource(100000), args);
     }
+
+    public static JedisPool getJedisPool() {
+        return jedisPool;
+    }
+
 }
