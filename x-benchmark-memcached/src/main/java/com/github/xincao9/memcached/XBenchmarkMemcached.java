@@ -13,31 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.xincao9.redis;
+package com.github.xincao9.memcached;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import redis.clients.jedis.JedisPool;
+import java.io.IOException;
+import net.rubyeye.xmemcached.MemcachedClient;
+import net.rubyeye.xmemcached.XMemcachedClient;
 
 /**
  *
  * @author xincao9@gmail.com
  */
-public class XBenchmarkRedis {
+public class XBenchmarkMemcached {
 
-    private static JedisPool jedisPool;
+    private static MemcachedClient memcachedClient;
 
-    public static void main(String... args) {
-        GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        genericObjectPoolConfig.setMaxTotal(128);
-        jedisPool = new JedisPool(genericObjectPoolConfig, "localhost", 6379);
+    public static void main(String... args) throws IOException {
+        memcachedClient = new XMemcachedClient("localhost", 11211);
         XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
-        jedisPool.close();
     }
 
-    public static JedisPool getJedisPool() {
-        return jedisPool;
+    public static MemcachedClient getMemcachedClient() {
+        return memcachedClient;
     }
-
 }

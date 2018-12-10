@@ -1,0 +1,3 @@
+/x-benchmark-core/target/
+/x-benchmark-redis/target/
+/x-benchmark-memcached/target/
