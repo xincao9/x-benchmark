@@ -17,7 +17,6 @@ package com.github.xincao9.redis;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.JedisPool;
 
 /**
@@ -29,9 +28,7 @@ public class XBenchmarkRedis {
     private static JedisPool jedisPool;
 
     public static void main(String... args) {
-        GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        genericObjectPoolConfig.setMaxTotal(128);
-        jedisPool = new JedisPool(genericObjectPoolConfig, "172.31.128.236", 6379);
+        jedisPool = new JedisPool("172.31.128.236", 6379);
         XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
     }
 
