@@ -30,7 +30,7 @@ public class XBenchmarkMemcached {
     private static MemcachedClient memcachedClient;
 
     public static void main(String... args) throws IOException {
-        memcachedClient = new XMemcachedClient("172.31.128.236", 11211);
+        memcachedClient = new XMemcachedClient("127.0.0.1", 11211);
         XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
     }
 

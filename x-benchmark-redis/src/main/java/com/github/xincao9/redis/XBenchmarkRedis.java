@@ -28,7 +28,7 @@ public class XBenchmarkRedis {
     private static JedisPool jedisPool;
 
     public static void main(String... args) {
-        jedisPool = new JedisPool("172.31.128.236", 6379);
+        jedisPool = new JedisPool("single-redis", 6379);
         XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
     }
 
