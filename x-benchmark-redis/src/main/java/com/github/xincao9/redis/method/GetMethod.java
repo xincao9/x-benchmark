@@ -33,14 +33,8 @@ public class GetMethod extends Method {
     public void exec(Object params) throws Exception {
         String key = String.valueOf(params);
         JedisPool jedisPool = XBenchmarkRedis.getJedisPool();
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
+        try (Jedis jedis = jedisPool.getResource()) {
             Logger.info(jedis.get(key));
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
         }
     }
 

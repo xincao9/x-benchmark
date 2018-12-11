@@ -17,6 +17,7 @@ package com.github.xincao9.memcached.http;
 
 import com.github.xincao9.memcached.XBenchmarkMemcached;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.annotation.PostConstruct;
 import net.rubyeye.xmemcached.GetsResponse;
 import net.rubyeye.xmemcached.MemcachedClient;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -69,5 +70,16 @@ public class MethodController {
         MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
         GetsResponse<String> getsResponse = memcachedClient.gets("cas");
         return memcachedClient.cas("cas", 0, String.valueOf(Long.valueOf(getsResponse.getValue()) + 1), getsResponse.getCas());
+    }
+    
+    @PostConstruct
+    public void initMethod () {
+        try {
+            MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
+            memcachedClient.set("cas", 0, "0");
+        } catch (Throwable e) {
+            LOGGER.error(e.getMessage());
+            throw new RuntimeException();
+        }
     }
 }

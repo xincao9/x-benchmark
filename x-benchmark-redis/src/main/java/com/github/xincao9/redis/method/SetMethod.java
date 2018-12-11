@@ -34,16 +34,9 @@ public class SetMethod extends Method {
     public void exec(Object params) throws Exception {
         String key = String.valueOf(params);
         JedisPool jedisPool = XBenchmarkRedis.getJedisPool();
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
+        try (Jedis jedis = jedisPool.getResource()) {
             String value = RandomStringUtils.randomAscii(128);
-            jedis.set(key, value);
-            Logger.info(String.format("key = %s, value = %s", key, value));
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
+            Logger.info(jedis.set(key, value));
         }
     }
 

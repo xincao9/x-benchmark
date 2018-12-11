@@ -17,19 +17,28 @@ package com.github.xincao9.redis;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import redis.clients.jedis.JedisPool;
 
 /**
  *
  * @author xincao9@gmail.com
  */
+@SpringBootApplication
 public class XBenchmarkRedis {
 
     private static JedisPool jedisPool;
+    private static boolean mode;
 
     public static void main(String... args) {
-        jedisPool = new JedisPool("single-redis", 6379);
-        XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        jedisPool = new JedisPool("localhost", 6379);
+        mode = Boolean.valueOf(System.getProperty("mode", "true"));
+        if (mode) {
+            XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        } else {
+            SpringApplication.run(XBenchmarkRedis.class, args);
+        }
     }
 
     public static JedisPool getJedisPool() {
