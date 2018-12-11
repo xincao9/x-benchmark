@@ -17,21 +17,29 @@ package com.github.xincao9.memcached;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import java.io.IOException;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.XMemcachedClient;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
  * @author xincao9@gmail.com
  */
+@SpringBootApplication
 public class XBenchmarkMemcached {
 
     private static MemcachedClient memcachedClient;
+    private static boolean mode;
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) throws Throwable {
         memcachedClient = new XMemcachedClient("127.0.0.1", 11211);
-        XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        mode = Boolean.valueOf(System.getProperty("mode", "true"));
+        if (mode) {
+            XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        } else {
+            SpringApplication.run(XBenchmarkMemcached.class, args);
+        }
     }
 
     public static MemcachedClient getMemcachedClient() {
