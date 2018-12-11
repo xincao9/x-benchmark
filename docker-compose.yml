@@ -16,6 +16,7 @@ services:
             - "8888:8888"
         depends_on:
             - x-memcached
+            - x-benchmark
     x-benchmark-redis:
         image: x-benchmark
         command: java -Dmode=false -jar x-benchmark-redis/target/x-benchmark-redis-1.0.jar
@@ -23,3 +24,4 @@ services:
             - "9999:9999"
         depends_on:
             - x-redis
+            - x-benchmark

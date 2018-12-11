@@ -12,7 +12,7 @@ env PATH $PATH:$MAVEN_HOME/bin
 run mkdir /code
 add . /code
 workdir /code
-run /usr/local/maven/bin/mvn clean install -Dmaven.test.skip=true
+run mvn clean install -Dmaven.test.skip=true
 
 
 expose 8888 9999
