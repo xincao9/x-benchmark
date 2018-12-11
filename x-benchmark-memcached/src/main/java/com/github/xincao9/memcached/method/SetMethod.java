@@ -34,8 +34,7 @@ public class SetMethod extends Method {
         String key = String.valueOf(params);
         MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
         String value = RandomStringUtils.randomAscii(128);
-        memcachedClient.set(key, 0, value);
-        Logger.info(String.format("key = %s, value = %s", key, value));
+        Logger.info(memcachedClient.set(key, 0, value));
     }
 
 }

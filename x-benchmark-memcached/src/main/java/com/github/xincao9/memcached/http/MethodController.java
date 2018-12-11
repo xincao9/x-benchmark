@@ -17,6 +17,7 @@ package com.github.xincao9.memcached.http;
 
 import com.github.xincao9.memcached.XBenchmarkMemcached;
 import java.util.concurrent.atomic.AtomicLong;
+import net.rubyeye.xmemcached.GetsResponse;
 import net.rubyeye.xmemcached.MemcachedClient;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
@@ -44,12 +45,29 @@ public class MethodController {
     }
 
     @RequestMapping("/set")
-    public void set() throws Throwable {
+    public Boolean set() throws Throwable {
         MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
         String key = String.valueOf(setCounter.incrementAndGet());
         String value = RandomStringUtils.randomAscii(128);
-        memcachedClient.set(key, 0, value);
-        LOGGER.info(String.format("key = %s, value = %s", key, value));
+        return memcachedClient.set(key, 0, value);
     }
 
+    @RequestMapping("/incr")
+    public Long incr() throws Throwable {
+        MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
+        return memcachedClient.incr("incr", 1, 0);
+    }
+
+    @RequestMapping("/decr")
+    public Long decr() throws Throwable {
+        MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
+        return memcachedClient.decr("decr", 1, Long.MAX_VALUE);
+    }
+
+    @RequestMapping("/cas")
+    public Boolean cas() throws Throwable {
+        MemcachedClient memcachedClient = XBenchmarkMemcached.getMemcachedClient();
+        GetsResponse<String> getsResponse = memcachedClient.gets("cas");
+        return memcachedClient.cas("cas", 0, String.valueOf(Long.valueOf(getsResponse.getValue()) + 1), getsResponse.getCas());
+    }
 }
