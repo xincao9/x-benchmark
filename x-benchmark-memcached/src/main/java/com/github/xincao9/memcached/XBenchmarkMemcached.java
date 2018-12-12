@@ -33,7 +33,7 @@ public class XBenchmarkMemcached {
     private static boolean mode;
 
     public static void main(String... args) throws Throwable {
-        memcachedClient = new XMemcachedClient("127.0.0.1", 11211);
+        memcachedClient = new XMemcachedClient("x-memcached", 11211);
         mode = Boolean.valueOf(System.getProperty("mode", "true"));
         if (mode) {
             XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);

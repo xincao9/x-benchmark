@@ -32,7 +32,7 @@ public class XBenchmarkRedis {
     private static boolean mode;
 
     public static void main(String... args) {
-        jedisPool = new JedisPool("localhost", 6379);
+        jedisPool = new JedisPool("x-redis", 6379);
         mode = Boolean.valueOf(System.getProperty("mode", "true"));
         if (mode) {
             XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
