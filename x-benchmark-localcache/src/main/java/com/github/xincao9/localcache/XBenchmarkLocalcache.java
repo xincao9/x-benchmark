@@ -17,21 +17,31 @@ package com.github.xincao9.localcache;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
  * @author xincao9@gmail.com
  */
+@SpringBootApplication
 public class XBenchmarkLocalcache {
 
     private static boolean mode;
+    private static String type;
 
     public static void main(String... args) {
         mode = Boolean.valueOf(System.getProperty("mode", "true"));
-        XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        type = System.getProperty("type", "jcs");
+        if (mode) {
+            XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+        } else {
+            SpringApplication.run(XBenchmarkLocalcache.class, args);
+        }
     }
 
-    public static Boolean isMode () {
-        return mode;
+    public static String getType() {
+        return type;
     }
+
 }

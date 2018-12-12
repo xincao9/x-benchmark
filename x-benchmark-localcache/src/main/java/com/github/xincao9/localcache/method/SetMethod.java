@@ -33,9 +33,9 @@ public class SetMethod extends Method {
     public void exec(Object params) throws Exception {
         String key = String.valueOf(params);
         String value = RandomStringUtils.randomAscii(128);
-        if (XBenchmarkLocalcache.isMode()) {
+        if ("jcs".equalsIgnoreCase(XBenchmarkLocalcache.getType())) {
             JCSSupport.put(key, value);
-        } else {
+        } else if ("guava".equalsIgnoreCase(XBenchmarkLocalcache.getType())) {
             GuavaCacheSupport.put(key, value);
         }
     }

@@ -32,9 +32,9 @@ public class GetMethod extends Method {
     @Override
     public void exec(Object params) throws Exception {
         String key = String.valueOf(params);
-        if (XBenchmarkLocalcache.isMode()) {
+        if ("jcs".equalsIgnoreCase(XBenchmarkLocalcache.getType())) {
             Logger.info(JCSSupport.get(key));
-        } else {
+        } else if ("guava".equalsIgnoreCase(XBenchmarkLocalcache.getType())) {
             Logger.info(GuavaCacheSupport.get(key));
         }
     }
