@@ -15,5 +15,6 @@
         <module>x-benchmark-core</module>
         <module>x-benchmark-redis</module>
         <module>x-benchmark-memcached</module>
+        <module>x-benchmark-localcache</module>
     </modules>
 </project>
