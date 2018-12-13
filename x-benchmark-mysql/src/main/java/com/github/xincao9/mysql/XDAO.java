@@ -36,8 +36,6 @@ public class XDAO {
                 statement.executeUpdate("create database if not exists db");
                 statement.executeUpdate("use db");
                 statement.executeUpdate("create table if not exists x (id bigint not null, value char(130), primary key (id)) engine=innodb default charset=utf8");
-                statement.executeUpdate("truncate x");
-                statement.executeUpdate("create table if not exists x (id bigint not null, value char(130), primary key (id)) engine=innodb default charset=utf8");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
@@ -45,12 +43,10 @@ public class XDAO {
     }
 
     public static String get(Long id) throws Exception {
-        Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery(String.format("select value from x where id=%d", id));
-        while (resultSet.next()) {
-            resultSet.close();
-            statement.close();
-            return resultSet.getString("value");
+        try (Statement statement = conn.createStatement(); ResultSet resultSet = statement.executeQuery(String.format("select value from x where id=%d", id))) {
+            while (resultSet.next()) {
+                return resultSet.getString("value");
+            }
         }
         return "";
     }
