@@ -2,3 +2,4 @@
 /x-benchmark-redis/target/
 /x-benchmark-memcached/target/
 /x-benchmark-localcache/target/
+/x-benchmark-thrift/target/
