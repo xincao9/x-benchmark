@@ -6,4 +6,5 @@
 * x-benchmark-redis 支持 get, set
 * x-benchmark-localcache 支持 get, set
 * x-benchmark-thrift 支持请求和响应的数据包138字节，服务端处理耗时50毫秒的场景下的压力测试
+
 具体的使用方法，请进入到对应组件的目录查看
