@@ -17,5 +17,6 @@
         <module>x-benchmark-memcached</module>
         <module>x-benchmark-localcache</module>
         <module>x-benchmark-thrift</module>
+        <module>x-benchmark-mysql</module>
     </modules>
 </project>

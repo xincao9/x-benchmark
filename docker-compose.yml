@@ -5,6 +5,12 @@ services:
         image: memcached
     x-redis:
         image: redis
+    x-mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: asdf
     x-benchmark-thrift-server:
         buidld: .
         command: java -jar x-benchmark-thrift/target/x-benchmark-thrift-1.0.jar
@@ -24,3 +30,10 @@ services:
             - "9999:9999"
         depends_on:
             - x-redis
+    x-benchmark-mysql:
+        build: .
+        command: java -Dmode=false -jar x-benchmark-mysql/target/x-benchmark-mysql-1.0.jar
+        ports:
+            - "5555:5555"
+        depends_on:
+            - x-mysql
