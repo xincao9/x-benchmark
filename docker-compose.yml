@@ -5,6 +5,11 @@ services:
         image: memcached
     x-redis:
         image: redis
+    x-benchmark-thrift-server:
+        buidld: .
+        command: java -jar x-benchmark-thrift/target/x-benchmark-thrift-1.0.jar
+        ports:
+            - "6666:6666"
     x-benchmark-memcached:
         build: .
         command: java -Dmode=false -jar x-benchmark-memcached/target/x-benchmark-memcached-1.0.jar
