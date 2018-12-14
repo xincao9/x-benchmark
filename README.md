@@ -1,11 +1,11 @@
 # x-benchmark
 
-### 中间件测试组件
+### Middleware Test Component
 
-* x-benchmark-memcached 支持get, set, cas, incr, decr 命令
-* x-benchmark-redis 支持 get, set
-* x-benchmark-localcache 支持 get, set
-* x-benchmark-thrift 支持请求和响应的数据包128字节，服务端处理耗时50毫秒的场景下的压力测试
-* x-benchmark-mysql insert 和 select 单条事物的性能测试
+* x-benchmark-memcached supports get, set, cas, incr, decr commands
+* x-benchmark-redis support get, set
+* x-benchmark-localcache supports get, set
+* x-benchmark-thrift supports 128 bytes of request and response packets, and the server processes the stress test in a scenario that takes 50 milliseconds.
+* x-benchmark-mysql insert and select single thing performance test
 
-具体的使用方法，请进入到对应组件的目录查看
+For specific usage, please go to the directory of the corresponding component to view
