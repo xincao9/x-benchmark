@@ -4,3 +4,5 @@
 /x-benchmark-localcache/target/
 /x-benchmark-thrift/target/
 /x-benchmark-mysql/target/
+/x-benchmark-dubbo/target/
+/x-benchmark-jsonrpc/target/
