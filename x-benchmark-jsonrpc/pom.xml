@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.xincao9</groupId>
             <artifactId>jsonrpc</artifactId>
-            <version>1.0</version>
+            <version>1.0-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -13,29 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.github.xincao9.jsonrpc.server;
-
-import com.github.xincao9.jsonrpc.Request;
-import com.github.xincao9.jsonrpc.SyncMethod;
+package com.github.xincao9.jsonrpc;
 
 /**
  *
  * @author xincao9@gmail.com
  */
-public class PingMethodImpl implements SyncMethod {
+public interface SayService {
 
-    @Override
-    public Object exec(Request request) {
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException ex) {
-        }
-        return request.getParams();
-    }
-
-    @Override
-    public String getName() {
-        return "ping";
-    }
+    Say perform(Say say);
 }

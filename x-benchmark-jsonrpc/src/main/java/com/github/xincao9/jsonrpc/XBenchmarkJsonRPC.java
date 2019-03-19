@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.github.xincao9.jsonrpc;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import com.github.xincao9.jsonrpc.server.PingMethodImpl;
+import com.github.xincao9.jsonrpc.client.JsonRPCClient;
+import com.github.xincao9.jsonrpc.server.JsonRPCServer;
+import com.github.xincao9.jsonrpc.server.SayServiceImpl;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -29,22 +30,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class XBenchmarkJsonRPC {
 
     private static boolean mode;
-    private static JsonRPCClient jsonRPCClient;
+    private static SayService sayService;
 
     public static void main(String... args) throws Throwable {
         mode = Boolean.valueOf(System.getProperty("mode", "true"));
         if (mode) {
-            JsonRPCServer jsonRPCServer = JsonRPCServer.defaultJsonRPCServer(12306, 1, Runtime.getRuntime().availableProcessors());
-            jsonRPCServer.register(new PingMethodImpl());
+            JsonRPCServer jsonRPCServer = JsonRPCServer.defaultJsonRPCServer();
+            jsonRPCServer.register(new SayServiceImpl());
             jsonRPCServer.start();
         } else {
-            XBenchmarkJsonRPC.jsonRPCClient = JsonRPCClient.defaultJsonRPCClient();
-            XBenchmarkJsonRPC.jsonRPCClient.start();
+            JsonRPCClient jsonRPCClient = JsonRPCClient.defaultJsonRPCClient();
+            jsonRPCClient.start();
+            XBenchmarkJsonRPC.sayService = jsonRPCClient.proxy(SayService.class);
             XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
         }
     }
 
-    public static JsonRPCClient getJsonRPCClient () {
-        return XBenchmarkJsonRPC.jsonRPCClient;
+    public static SayService getSayService() {
+        return sayService;
     }
+
 }

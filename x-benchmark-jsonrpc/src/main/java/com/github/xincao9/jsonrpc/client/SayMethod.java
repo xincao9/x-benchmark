@@ -15,35 +15,29 @@
  */
 package com.github.xincao9.jsonrpc.client;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.xincao9.benchmark.core.annotation.Test;
 import com.github.xincao9.benchmark.core.interfaces.Method;
 import com.github.xincao9.benchmark.core.util.Logger;
-import com.github.xincao9.jsonrpc.Request;
-import com.github.xincao9.jsonrpc.Response;
+import com.github.xincao9.jsonrpc.Say;
 import com.github.xincao9.jsonrpc.XBenchmarkJsonRPC;
-import java.util.Collections;
-import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
  * @author xincao9@gmail.com
  */
-@Test(name = "ping")
-public class PingMethod extends Method {
+@Test(name = "say")
+public class SayMethod extends Method {
 
     @Override
     public void exec(Object params) throws Exception {
         try {
             String value = RandomStringUtils.randomAscii(128);
-            Request request = Request.createRequest(Boolean.TRUE, "ping", Collections.singletonList(value));
-            request.setHost("127.0.0.1");
-            request.setPort((short) 12306);
-            Response<List<Object>> response = XBenchmarkJsonRPC.getJsonRPCClient().invoke(request);
-            Logger.info(JSONObject.toJSONString(response, SerializerFeature.DisableCircularReferenceDetect));
+            Say say = new Say((Integer)params, value);
+            say = XBenchmarkJsonRPC.getSayService().perform(say);
+            Logger.info(say.toString());
         } catch (Throwable e) {
+            Logger.info(e.getMessage());
         }
     }
 
