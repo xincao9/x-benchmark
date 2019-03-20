@@ -17,8 +17,8 @@ package com.github.xincao9.jsonrpc;
 
 import com.github.xincao9.benchmark.core.XBenchmarkCore;
 import com.github.xincao9.benchmark.core.util.SequenceSource;
-import com.github.xincao9.jsonrpc.client.JsonRPCClient;
-import com.github.xincao9.jsonrpc.server.JsonRPCServer;
+import com.github.xincao9.jsonrpc.core.client.JsonRPCClient;
+import com.github.xincao9.jsonrpc.core.server.JsonRPCServer;
 import com.github.xincao9.jsonrpc.server.SayServiceImpl;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -42,7 +42,7 @@ public class XBenchmarkJsonRPC {
             JsonRPCClient jsonRPCClient = JsonRPCClient.defaultJsonRPCClient();
             jsonRPCClient.start();
             XBenchmarkJsonRPC.sayService = jsonRPCClient.proxy(SayService.class);
-            XBenchmarkCore.bootstrap(new SequenceSource(1000000), args);
+            XBenchmarkCore.bootstrap(new SequenceSource(500000), args);
         }
     }
 
