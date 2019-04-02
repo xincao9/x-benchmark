@@ -1,9 +1,0 @@
-server:
-    address: 0.0.0.0
-    port: 4444
-    session-timeout: 1800
-    context-path: /
-    tomcat:
-        max-threads: 200
-        uri-encoding: UTF-8
-        basedir: /tmp

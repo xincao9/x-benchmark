@@ -18,7 +18,5 @@
         <module>x-benchmark-localcache</module>
         <module>x-benchmark-thrift</module>
         <module>x-benchmark-mysql</module>
-        <module>x-benchmark-dubbo</module>
-        <module>x-benchmark-jsonrpc</module>
     </modules>
 </project>
